@@ -1,0 +1,52 @@
+{
+    "manifest_version": 2,
+
+    "name": "RedmineV",
+    "description": "This is a Redmine extension that will help you a lot",
+    "version": "1.0",
+
+    "browser_action": {
+        "default_icon": "icon128.png",
+        "default_popup": "popup.html"
+    },
+
+    "background": {
+        "scripts": ["background.js"]
+    },
+
+    "content_scripts": [{
+        "matches": ["*://*/*"],
+        "js": ["jquery.min.js", "content_script.js"]
+    }],
+
+    "commands": {
+        "copy-title-to-clipboard": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+V",
+                "mac": "Command+Shift+V"
+            },
+            "description": "Copy title to clipboard"
+        },
+        "go-to-issue": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+F",
+                "mac": "Ctrl+Shift+F"
+            },
+            "description": "Open the issue page"
+        }
+    },
+
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "contextMenus",
+        "clipboardRead",
+        "clipboardWrite"
+    ],
+
+    "icons": {
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+    }
+}
