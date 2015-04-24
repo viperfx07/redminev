@@ -19,6 +19,8 @@
         "js": ["jquery.min.js", "content_script.js"]
     }],
 
+    "options_page": "options.html",
+
     "commands": {
         "copy-title-to-clipboard": {
             "suggested_key": {
@@ -41,7 +43,8 @@
         "tabs",
         "contextMenus",
         "clipboardRead",
-        "clipboardWrite"
+        "clipboardWrite",
+        "storage"
     ],
 
     "icons": {

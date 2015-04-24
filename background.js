@@ -2,6 +2,20 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+var options = [];
+
+chrome.storage.sync.get(['redmineUrl'], function(items){
+  options['redmineUrl'] = items.redmineUrl;
+})
+
+chrome.storage.onChanged.addListener(function(changes, namespace) {
+  for (key in changes) {
+    var storageChange = changes[key];
+    options[key] = storageChange.newValue;
+  }
+});
+
+
 function sendCommandToActiveTab(commandStr, callbackFunction){
   chrome.tabs.query({
         active: true,
@@ -31,9 +45,8 @@ function goToIssue(){
   var callback = function(response){
     if(response && response.type == 'goto') {
       var issueNumber = response.issueNumber;
-      var redmineUrl = "https://projects.readingroom.com";
+      var redmineUrl = options['redmineUrl'];
       var issueUrl = redmineUrl + "/issues/" + issueNumber;
-      console.log(issueUrl);
       chrome.tabs.create({url: issueUrl})
     }
   }
